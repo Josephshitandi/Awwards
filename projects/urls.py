@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns =[
-    # path('', views.news_today, name = 'projects'),
+    # path('', views.news_today, name = 'index'),
     # path('search/', views.search_results, name='search_results'),
     # path('ajax/newsletter/', views.newsletter, name='newsletter'),
     # path('api/merch/', views.MerchList.as_view()),
