@@ -4,6 +4,7 @@ import datetime as dt
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import Projects,Profile
+from .forms import *
 
 # Create your views here.
 # @login_required(login_url='/accounts/register/')
@@ -24,3 +25,19 @@ def get_project_by_id(request, id):
         raise Http404()    
     
     return render(request, "project.html", {"project":project})
+
+
+@login_required(login_url='/accounts/login/')
+def new_project(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.author = current_user
+            project.save()
+        return redirect('index')
+
+    else:
+        form = NewProjectForm()
+    return render(request, 'new-project.html', {"form":form})
