@@ -67,8 +67,13 @@ class ProjectsList(APIView):
     
 class ProjectsDescription(APIView):
     permission_classes = (IsAdminOrReadOnly,)
-    def get_merch(self, pk):
+    def get_projects(self, pk):
         try:
             return Projects.objects.get(pk=pk)
         except Projects.DoesNotExist:
             return Http404
+        
+    def get(self, request, pk, format=None):
+        merch = self.get_projects(pk)
+        serializers = ProjectsSerializer(merch)
+        return Response(serializers.data)
