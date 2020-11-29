@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>{{heading}}</p>
-</body>
-</html>
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{%load static%}
+{% block content %}
+{{ block.super}}
+
+<div class="container_fluid">
+    <h2>{{heading}}</h2>
+</div>
+
+{% endblock %}
+{% block scripts %}
+ {{ block.super }}
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+{% endblock %}

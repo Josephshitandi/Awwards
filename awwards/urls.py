@@ -25,3 +25,7 @@ urlpatterns = [
     path("accounts/logout", views.logout_then_login, name= "logout"),
     path('tinymce/', include('tinymce.urls')),
 ]
+
+# admin.site.site_header = "UMSRA Admin"
+# admin.site.site_title = "UMSRA Admin Portal"
+# admin.site.index_title = "Welcome to UMSRA Researcher Portal"
