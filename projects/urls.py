@@ -8,9 +8,9 @@ urlpatterns =[
     path('', views.index, name = 'index'),
     re_path('project/(\d+)', views.get_project_by_id, name='project_results'),
     path('new/project', views.new_project, name='new-project'),
+    path('api/projects/', views.ProjectsList.as_view()),
     # path('search/', views.search_results, name='search_results'),
     # path('ajax/newsletter/', views.newsletter, name='newsletter'),
-    # path('api/merch/', views.MerchList.as_view()),
     # re_path('api/merch/merch-id/(?P<pk>[0-9]+)/$',
     #     views.MerchDescription.as_view())
 ]

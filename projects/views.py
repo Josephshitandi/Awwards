@@ -64,3 +64,11 @@ class ProjectsList(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
     permission_classes = (IsAdminOrReadOnly,)
+    
+class ProjectsDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get_merch(self, pk):
+        try:
+            return Projects.objects.get(pk=pk)
+        except Projects.DoesNotExist:
+            return Http404
