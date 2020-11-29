@@ -15,7 +15,7 @@ def index(request):
     return render(request, 'home.html', {"date": date, "heading":heading, "projects":projects})
 
 
-def get_project(request, id):
+def get_project_by_id(request, id):
 
     try:
         project = Projects.objects.get(pk = id)
