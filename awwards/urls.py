@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth import views
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +25,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path("accounts/logout", views.logout_then_login, name= "logout"),
     path('tinymce/', include('tinymce.urls')),
-    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    # path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('api-token-auth/', obtain_auth_token),
 
 ]
 

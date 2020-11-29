@@ -49,9 +49,9 @@ INSTALLED_APPS = [
     'tinymce',
     'cloudinary',
     'rest_framework',
-    'rest_framework.authtoken',
     'bootstrap3',
     'star_ratings',
+    'rest_framework.authtoken'
     
 ]
 
@@ -169,6 +169,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 cloudinary.config( 
   cloud_name = "shitandi", 
