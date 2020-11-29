@@ -24,6 +24,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path("accounts/logout", views.logout_then_login, name= "logout"),
     path('tinymce/', include('tinymce.urls')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+
 ]
 
 # admin.site.site_header = "UMSRA Admin"

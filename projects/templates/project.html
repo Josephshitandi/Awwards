@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap3%}
-
+{% load static %}
 {% block content %}
 
 <div class="container" style="padding-top: 70px;">
@@ -47,12 +47,13 @@
           </div>
           <div class="mt-2 pt-2">
             <h4>Rate</h4>
+            
           </div>
                    
           <div class="row">
             <div class="col-lg-6 dark-text">             
               <img src="{{ project_item.Author.photo.url }}" alt="" class="rounded-circle img-fluid mr-1" style="width: 40px;">
-              Posted By:{{project_item.author |upper}}<small>, <span class="mr-1"> From {{project.country.name}}</span>
+              Posted By:{{project_item.author|upper}}<small>, <span class="mr-1"> From {{project.country.name}}</span>
               <img src="{{project.country.flag}}" alt=" {{project.country.name}} flag"> </small> </div>
 
             <div class="col-lg-6 dark-text"> <small> Date Posted: {{project.pub_date|date:"d /m/Y"}} </small> </div>
@@ -70,3 +71,6 @@
 </div>
 
 {% endblock %}
+
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>

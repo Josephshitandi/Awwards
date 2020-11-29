@@ -1,4 +1,5 @@
 from django.db import models
+# from ratings.models import Ratings
 import datetime as dt
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
@@ -39,3 +40,8 @@ class Projects(models.Model):
     
     def delete_project(self):
         self.delete()
+        
+    def __str__(self):
+        return self.project_title
+    
+    
