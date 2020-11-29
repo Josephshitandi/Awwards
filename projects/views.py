@@ -13,3 +13,14 @@ def index(request):
     projects = Projects.objects.all()
     
     return render(request, 'home.html', {"date": date, "heading":heading, "projects":projects})
+
+
+def get_project(request, id):
+
+    try:
+        project = Projects.objects.get(pk = id)
+        
+    except ObjectDoesNotExist:
+        raise Http404()    
+    
+    return render(request, "project.html", {"project":project})
