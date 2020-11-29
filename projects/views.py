@@ -74,6 +74,15 @@ class ProjectsDescription(APIView):
             return Http404
         
     def get(self, request, pk, format=None):
-        merch = self.get_projects(pk)
-        serializers = ProjectsSerializer(merch)
+        project = self.get_projects(pk)
+        serializers = ProjectsSerializer(project)
         return Response(serializers.data)
+    
+    def put(self, request, pk, format=None):
+        project = self.get_projects(pk)
+        serializers = ProjectsSerializer(project, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
