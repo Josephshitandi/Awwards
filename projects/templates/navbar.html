@@ -20,6 +20,10 @@
           <li> <a href="{% url 'new-project' %}">Post</a></li>
           
         {% if user.is_authenticated %}
+        <form class="form-inline" role="search" action="{% url 'search_results' %}">
+          <input type="text" class="form-control" placeholder="Search" aria-label="Search" name="keyword">
+          <button type="submit" class="btn btn-outline-white btn-md my-2 btn-sm">Search</button>
+      </form>
         
        <li> <a  href="{% url 'logout' %}">Logout</a></li>
         {% else %}

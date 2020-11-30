@@ -41,6 +41,33 @@ class Projects(models.Model):
     def delete_project(self):
         self.delete()
         
+    @classmethod
+    def get_projects(cls):
+        projects = cls.objects.all()
+        return projects
+    
+    @classmethod
+    def search_projects(cls, search_term):
+        projects = cls.objects.filter(project_title__icontains=search_term)
+        return projects
+    
+    
+    @classmethod
+    def get_by_author(cls, Author):
+        projects = cls.objects.filter(Author=Author)
+        return projects
+    
+    
+    @classmethod
+    def get_project(request, id):
+        try:
+            project = Projects.objects.get(pk = id)
+            
+        except ObjectDoesNotExist:
+            raise Http404()
+        
+        return project
+    
     def __str__(self):
         return self.project_title
     

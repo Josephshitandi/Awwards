@@ -11,7 +11,7 @@ urlpatterns =[
     path('api/projects/', views.ProjectsList.as_view()),
     path('api/profile/', views.ProfileList.as_view()),
     path(r'ratings/', include('star_ratings.urls', namespace='ratings')),
-    # path('search/', views.search_results, name='search_results'),
+    path('search/', views.search_projects, name='search_results'),
     # path('ajax/newsletter/', views.newsletter, name='newsletter'),
     # re_path('api/merch/merch-id/(?P<pk>[0-9]+)/$',
     #     views.MerchDescription.as_view())

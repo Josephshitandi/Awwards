@@ -56,14 +56,14 @@ class ProjectsList(APIView):
         serializers = ProjectsSerializer(all_merch, many=True)
         return Response(serializers.data)
     
-    def post(self, request, format=None):
-        serializers = ProjectsSerializer(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def post(self, request, format=None):
+    #     serializers = ProjectsSerializer(data=request.data)
+    #     if serializers.is_valid():
+    #         serializers.save()
+    #         return Response(serializers.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    permission_classes = (IsAdminOrReadOnly,)
+    # permission_classes = (IsAdminOrReadOnly,)
     
 class ProjectsDescription(APIView):
     permission_classes = (IsAdminOrReadOnly,)
@@ -98,12 +98,25 @@ class ProfileList(APIView):
         serializers = ProfileSerializer(all_merch, many=True)
         return Response(serializers.data)
     
-    def post(self, request, format=None):
-        serializers = ProfileSerializer(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def post(self, request, format=None):
+    #     serializers = ProfileSerializer(data=request.data)
+    #     if serializers.is_valid():
+    #         serializers.save()
+    #         return Response(serializers.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    permission_classes = (IsAdminOrReadOnly,)
+    # permission_classes = (IsAdminOrReadOnly,)
+    
+@login_required(login_url='/accounts/login/')
+def search_projects(request):
+    if 'keyword' in request.GET and request.GET["keyword"]:
+        search_term = request.GET.get("keyword")
+        searched_projects = Projects.search_projects(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html', {"message":message,"projects": searched_projects})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html', {"message": message})
 
