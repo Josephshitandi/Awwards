@@ -53,8 +53,8 @@ class Projects(models.Model):
     
     
     @classmethod
-    def get_by_author(cls, Author):
-        projects = cls.objects.filter(Author=Author)
+    def get_by_author(cls, author):
+        projects = cls.objects.filter(author=author)
         return projects
     
     

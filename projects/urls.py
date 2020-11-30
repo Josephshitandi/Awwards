@@ -12,9 +12,7 @@ urlpatterns =[
     path('api/profile/', views.ProfileList.as_view()),
     path(r'ratings/', include('star_ratings.urls', namespace='ratings')),
     path('search/', views.search_projects, name='search_results'),
-    # path('ajax/newsletter/', views.newsletter, name='newsletter'),
-    # re_path('api/merch/merch-id/(?P<pk>[0-9]+)/$',
-    #     views.MerchDescription.as_view())
+    path('accounts/profile/', views.user_profiles, name='profile'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
